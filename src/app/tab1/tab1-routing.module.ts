@@ -1,16 +1,22 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { Tab1Page } from './tab1.page';
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
+import { Tab1Page } from "./tab1.page";
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
-    path: '',
+    path: "",
     component: Tab1Page,
-  }
+  },
+  {
+    path: "agregar/:listaId",
+    loadChildren: () =>
+      import("../pages/agregar/agregar.module").then((m) => m.AgregarPageModule),
+  },
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  imports: [RouterModule.forChild(routes), ReactiveFormsModule, FormsModule],
+  exports: [RouterModule],
 })
 export class Tab1PageRoutingModule {}
